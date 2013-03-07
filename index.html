@@ -70,8 +70,6 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
         <script>
-          //window.onload = function () {
-			  //io.setPath('/socket.io/');
  
 			  function ratelimit(fn, ms) {
 			    var last = (new Date()).getTime();
@@ -171,13 +169,10 @@
 			  );
  
 			  var disabled = false,
-			      socket = new io.Socket('codraw.jit.su', {port: 8080}),
-				  //socket = new io.Socket('localhost', {port: 8080}),
+			      socket = new io.connect('codraw.jit.su'),
 				  //socket = new io.connect('http://localhost', {port: 8080}),
 			      timeouts = {};
  
-			  if(socket.connect()){
-				  console.log('connected'); // COMMENT
 			    socket.on('message', function(data){
 			      data = JSON.parse(data);
 			      if(data['action'] == 'close'){
@@ -192,8 +187,6 @@
 			        move(data);
 			      };
 			    });
-			  };
-			  //};
         </script>
     </body>
 </html>

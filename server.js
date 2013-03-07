@@ -47,11 +47,11 @@ io.sockets.on('connection', function (client) {
       }
     
       request.id = client.sessionId
-      client.broadcast(json(request));
+      client.broadcast.send(json(request));
     });
  
     client.on('disconnect', function(){
-      client.broadcast(json({'id': client.sessionId, 'action': 'close'}));
+      client.broadcast.send(json({'id': client.sessionId, 'action': 'close'}));
     });
 
 });
